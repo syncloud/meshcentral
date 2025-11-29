@@ -44,7 +44,7 @@ local build(arch, test_ui, dind) = [
                  './nginx/test.sh',
                ],
              },
- {
+             {
                name: 'backend',
                image: 'ghcr.io/ylianst/meshcentral:' + version,
                commands: [
@@ -58,9 +58,6 @@ local build(arch, test_ui, dind) = [
                  'backend/test.sh',
                ],
              },
-
-   
-
              {
                name: 'cli',
                image: 'golang:' + go,
@@ -308,4 +305,4 @@ local build(arch, test_ui, dind) = [
 
 build('amd64', true, '20.10.21-dind') +
 build('arm64', false, '20.10.21-dind') +
-build("arm", false, "19.03.8-dind")
+build('arm', false, '19.03.8-dind')
