@@ -308,31 +308,3 @@ local build(arch, test_ui, dind) = [
 
 build('amd64', true, '20.10.21-dind') +
 build('arm64', false, '20.10.21-dind')
-{
-          path: '/dev',
-        },
-      },
-      {
-        name: 'shm',
-        temp: {},
-      },
-      {
-        name: 'videos',
-        temp: {},
-      },
-      {
-        name: 'dockersock',
-        temp: {},
-      },
-    ],
-  },
-];
-
-build('amd64', true, '20.10.21-dind') +
-build('arm64', false, '20.10.21-dind')
-,
-  },
-];
-
-build('amd64', true, '20.10.21-dind') +
-build('arm64', false, '20.10.21-dind')
