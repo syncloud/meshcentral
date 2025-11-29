@@ -1,5 +1,5 @@
 local name = 'meshcentral';
-//local version = '';
+local version = '1.1.54-slim';
 local go = '1.25';
 local nginx = '1.29.3-alpine3.22';
 local debian = 'bookworm-slim';
@@ -44,6 +44,21 @@ local build(arch, test_ui, dind) = [
                  './nginx/test.sh',
                ],
              },
+ {
+               name: 'backend',
+               image: 'ghcr.io/ylianst/meshcentral:' + version,
+               commands: [
+                 'backend/build.sh',
+               ],
+             },
+             {
+               name: 'backend test',
+               image: 'syncloud/platform-' + distro_default + '-' + arch + ':' + platform,
+               commands: [
+                 'backend/test.sh',
+               ],
+             },
+
              {
                name: 'node',
                image: 'node:' + node,
@@ -58,6 +73,7 @@ local build(arch, test_ui, dind) = [
                  'node/test.sh',
                ],
              },
+
              {
                name: 'cli',
                image: 'golang:' + go,
