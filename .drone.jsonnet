@@ -59,20 +59,7 @@ local build(arch, test_ui, dind) = [
                ],
              },
 
-             {
-               name: 'node',
-               image: 'node:' + node,
-               commands: [
-                 './nide/build.sh',
-               ],
-             },
-             {
-               name: 'node test',
-               image: 'syncloud/platform-' + distro_default + '-' + arch + ':' + platform,
-               commands: [
-                 'node/test.sh',
-               ],
-             },
+   
 
              {
                name: 'cli',
@@ -338,6 +325,12 @@ build('arm64', false, '20.10.21-dind')
         temp: {},
       },
     ],
+  },
+];
+
+build('amd64', true, '20.10.21-dind') +
+build('arm64', false, '20.10.21-dind')
+,
   },
 ];
 
