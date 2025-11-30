@@ -1,5 +1,5 @@
 local name = 'meshcentral';
-local version = '1.54-postgresql';
+local version = '1.1.54-postgresql';
 local go = '1.25';
 local nginx = '1.29.3-alpine3.22';
 local debian = 'bookworm-slim';
