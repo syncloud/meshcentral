@@ -11,11 +11,47 @@
   },
   "domains": {
     "": {
-      "_title": "MyServer",
+      "title": "Syncloud",
       "_title2": "Servername",
       "_minify": true,
       "_newAccounts": true,
-      "_userNameIsEmail": true
+      "_userNameIsEmail": true,
+      "authStrategies": {
+        "oidc": {
+          "issuer": {
+            "issuer": "{{ .AuthUrl }}",
+            "end_session_endpoint": "{{ .AuthUrl }}/logout"
+          },
+          "client": {
+            "client_id": "{{ .OidcClientId }}",
+            "client_secret": "{{ .OidcClientSecret }}"
+          },
+          "groups": {
+            "required": [
+              "users",
+              "syncloud"
+            ],
+            "siteadmin": [
+              "syncloud"
+            ],
+            "sync": {
+              "enable": true,
+              "filter": [
+                "users",
+                "syncloud"
+              ]
+            }
+          },
+          "newAccounts": true,
+          "_newAccountsRights": [
+            "nonewgroups",
+            "notools"
+          ],
+          "_newAccountsUserGroups": [
+            "ugrp//xxxxxxxxxxxxxxxxx"
+          ]
+        }
+      }
     }
   }
 }

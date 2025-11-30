@@ -17,15 +17,18 @@ import (
 const App = "meshcentral"
 
 type Variables struct {
-	App       string
-	AppDir    string
-	DataDir   string
-	CommonDir string
-	AppKey    string
-	AppUrl    string
-	AppDomain string
-	Domain    string
-	Secret    string
+	App              string
+	AppDir           string
+	DataDir          string
+	CommonDir        string
+	AppKey           string
+	AppUrl           string
+	AppDomain        string
+	Domain           string
+	Secret           string
+	AuthUrl          string
+	OIDCClientId     string
+	OIDCClientSecret string
 }
 
 type Installer struct {
@@ -215,15 +218,28 @@ func (i *Installer) UpdateConfigs() error {
 		return err
 	}
 
+	authUrl, err := i.platformClient.GetAppUrl("auth")
+	if err != nil {
+		return err
+	}
+
+	clientSecret, err := i.platformClient.RegisterOIDCClient(App, "/auth-oidc-callback", false, "client_secret_post")
+	if err != nil {
+		return err
+	}
+
 	variables := Variables{
-		App:       App,
-		AppDir:    i.appDir,
-		DataDir:   i.dataDir,
-		CommonDir: i.commonDir,
-		AppUrl:    appUrl,
-		AppDomain: appDomain,
-		Domain:    domain,
-		Secret:    secret,
+		App:              App,
+		AppDir:           i.appDir,
+		DataDir:          i.dataDir,
+		CommonDir:        i.commonDir,
+		AppUrl:           appUrl,
+		AppDomain:        appDomain,
+		Domain:           domain,
+		Secret:           secret,
+		AuthUrl:          authUrl,
+		OIDCClientId:     App,
+		OIDCClientSecret: clientSecret,
 	}
 
 	err = config.Generate(
