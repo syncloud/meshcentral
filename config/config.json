@@ -23,8 +23,8 @@
             "end_session_endpoint": "{{ .AuthUrl }}/logout"
           },
           "client": {
-            "client_id": "{{ .OidcClientId }}",
-            "client_secret": "{{ .OidcClientSecret }}"
+            "client_id": "{{ .OIDCClientId }}",
+            "client_secret": "{{ .OIDCClientSecret }}"
           },
           "groups": {
             "required": [
