@@ -9,6 +9,9 @@ mkdir -p ${BUILD_DIR}
 # inconsistent package.json forces runtime dependcies upgrade
 cd /opt/meshcentral/meshcentral
 npm install --no-audit --no-optional --omit=optional node-forge@1.3.2
+npm install --no-audit --no-optional --omit=optional passport@0.7.0
+npm install --no-audit --no-optional --omit=optional connect-flash@0.1.1
+npm install --no-audit --no-optional --omit=optional openid-client@5.7.1
 
 cp -r /etc ${BUILD_DIR}
 cp -r /opt ${BUILD_DIR}
