@@ -21,6 +21,9 @@ cp -r /bin ${BUILD_DIR}
 cp -r /lib ${BUILD_DIR}
 cp -r ${DIR}/bin/* ${BUILD_DIR}/bin
 
+rm ${BUILD_DIR}/opt/meshcentral/meshcentral-data
+ln -s /var/snap/meshcentral/current/meshcentral-data ${BUILD_DIR}/opt/meshcentral/meshcentral-data
+
 cd ${DIR}/../build
 #wget https://github.com/cyberb/MeshCentral/archive/refs/heads/master.tar.gz
 #tar xf master.tar.gz

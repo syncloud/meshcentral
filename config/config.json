@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/Ylianst/MeshCentral/master/meshcentral-config-schema.json",
   "settings": {
+    "syslog": "localhost:514",
     "debug": "*",
     "_cert": "myserver.mydomain.com",
     "_WANonly": true,

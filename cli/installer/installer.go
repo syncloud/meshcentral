@@ -188,6 +188,7 @@ func (i *Installer) UpdateConfigs() error {
 	err := linux.CreateMissingDirs(
 		path.Join(i.dataDir, "nginx"),
 		path.Join(i.dataDir, "log"),
+		path.Join(i.dataDir, "meshcentral-data"),
 	)
 	if err != nil {
 		return err
