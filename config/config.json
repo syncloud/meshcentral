@@ -47,7 +47,7 @@
           "ssloptions": {
             "ca": "/var/snap/platform/current/syncloud.ca.crt",
             "_rejectUnauthorized": true
-          }
+          },
           "newAccounts": true,
           "_newAccountsRights": [
             "nonewgroups",
