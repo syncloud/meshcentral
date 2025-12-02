@@ -8,7 +8,8 @@
     "_LANonly": true,
     "_sessionKey": "MyReallySecretPassword1",
     "unixSocket": "{{ .DataDir }}/meshcentral.sock",
-    "unixSocketMode": "660"
+    "unixSocketMode": "660",
+    "backupPath": "{{ .StorageDir }}/backup"
   },
   "domains": {
     "": {
@@ -43,6 +44,10 @@
               ]
             }
           },
+          "ssloptions": {
+            "ca": "/var/snap/platform/current/syncloud.ca.crt",
+            "_rejectUnauthorized": true
+          }
           "newAccounts": true,
           "_newAccountsRights": [
             "nonewgroups",

@@ -29,6 +29,7 @@ type Variables struct {
 	AuthUrl          string
 	OIDCClientId     string
 	OIDCClientSecret string
+	StorageDir       string
 }
 
 type Installer struct {
@@ -160,6 +161,12 @@ func (i *Installer) PostRefresh() error {
 	if err != nil {
 		return err
 	}
+
+	err = i.StorageChange()
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -185,10 +192,16 @@ func (i *Installer) UpdateVersion() error {
 }
 
 func (i *Installer) UpdateConfigs() error {
-	err := linux.CreateMissingDirs(
+	storageDir, err := i.platformClient.InitStorage(App, App)
+	if err != nil {
+		return err
+	}
+
+	err = linux.CreateMissingDirs(
 		path.Join(i.dataDir, "nginx"),
 		path.Join(i.dataDir, "log"),
 		path.Join(i.dataDir, "meshcentral-data"),
+		path.Join(storageDir, "backup"),
 	)
 	if err != nil {
 		return err
@@ -241,6 +254,7 @@ func (i *Installer) UpdateConfigs() error {
 		AuthUrl:          authUrl,
 		OIDCClientId:     App,
 		OIDCClientSecret: clientSecret,
+		StorageDir:       storageDir,
 	}
 
 	err = config.Generate(
