@@ -21,7 +21,7 @@ cp -r /bin ${BUILD_DIR}
 cp -r /lib ${BUILD_DIR}
 cp -r ${DIR}/bin/* ${BUILD_DIR}/bin
 
-rm ${BUILD_DIR}/opt/meshcentral/meshcentral-data
+rm -r ${BUILD_DIR}/opt/meshcentral/meshcentral-data
 ln -s /var/snap/meshcentral/current/meshcentral-data ${BUILD_DIR}/opt/meshcentral/meshcentral-data
 
 cd ${DIR}/../build
