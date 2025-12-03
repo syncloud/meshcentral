@@ -9,7 +9,9 @@
     "_sessionKey": "MyReallySecretPassword1",
     "unixSocket": "{{ .DataDir }}/meshcentral.sock",
     "unixSocketMode": "660",
-    "backupPath": "{{ .StorageDir }}/backup"
+    "autoBackup": {
+      "backupPath": "{{ .StorageDir }}/backup"
+    }
   },
   "domains": {
     "": {
