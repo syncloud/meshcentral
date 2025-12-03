@@ -20,7 +20,6 @@ def module_setup(request, device, artifact_dir, ui_mode, data_dir, app, domain, 
 
         def module_teardown():
             device.run_ssh('journalctl > {0}/journalctl.log'.format(TMP_DIR), throw=False)
-            device.run_ssh("snap run meshcentral.sql meshcentral -e 'select * from meshcentral2_users;' > {0}/users.log".format(TMP_DIR), throw=False)
             device.scp_from_device('{0}/*'.format(TMP_DIR), join(artifact_dir, ui_mode))
             check_output('cp /videos/* {0}'.format(artifact_dir), shell=True)
             check_output('chmod -R a+r {0}'.format(artifact_dir), shell=True)
@@ -32,16 +31,16 @@ def test_start(module_setup, app, domain, device_host):
     add_host_alias(app, device_host, domain)
 
 
-def test_main(selenium, device_user, device_password):
+def test_index(selenium, device_user, device_password):
     selenium.open_app()
-    selenium.find_by(By.XPATH, "//h1[contains(.,'Welcome!')]")
-    selenium.screenshot('main')
+    selenium.find_by(By.XPATH, "//input[@value='Log In']")
+    selenium.screenshot('index')
 
 
 def test_login(selenium, device_user, device_password, app_domain):
-    selenium.driver.get(f"https://{device_user}:{device_password}@{app_domain}/admin/")
-    password = selenium.find_by(By.ID, "password")
-    password.send_keys(device_password)
-    selenium.find_by(By.XPATH, "//button[contains(.,'Log in')]").click()
-    selenium.screenshot('admin')
+    selenium.find_by(By.ID, "username").send_keys(device_user)
+    selenium.find_by(By.ID, "password").send_keys(device_password)
+    selenium.find_by(By.XPATH, "//input[@value='Log In']").click()
+    selenium.find_by(By.XPATH, "//input[@value='Users']")
+    selenium.screenshot('main')
 
