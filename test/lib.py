@@ -10,6 +10,6 @@ def login_oidc(selenium, device_user, device_password):
     selenium.screenshot('login')
     #password.send_keys(Keys.RETURN)
     selenium.find_by(By.ID, "sign-in-button").click()
-    selenium.find_by(By.ID, "toolbar-open")
+    selenium.find_by(By.ID, "accept-button").click()
     selenium.screenshot('main')
 
