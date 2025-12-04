@@ -237,7 +237,7 @@ func (i *Installer) UpdateConfigs() error {
 		return err
 	}
 
-	clientSecret, err := i.platformClient.RegisterOIDCClient(App, "/auth-oidc-callback", false, "client_secret_post")
+	clientSecret, err := i.platformClient.RegisterOIDCClient(App, "/auth-oidc-callback", false, "client_secret_basic")
 	if err != nil {
 		return err
 	}
