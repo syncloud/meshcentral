@@ -4,6 +4,7 @@ from os.path import dirname, join
 from selenium.webdriver.common.by import By
 from subprocess import check_output
 from syncloudlib.integration.hosts import add_host_alias
+from test import lib
 
 DIR = dirname(__file__)
 
@@ -33,14 +34,12 @@ def test_start(module_setup, app, domain, device_host):
 
 def test_index(selenium, device_user, device_password):
     selenium.open_app()
-    selenium.find_by(By.XPATH, "//input[@value='Log In']")
+    selenium.find_by(By.ID, "auth-oidc")
     selenium.screenshot('index')
 
 
-def test_login(selenium, device_user, device_password, app_domain):
-    selenium.find_by(By.ID, "username").send_keys(device_user)
-    selenium.find_by(By.ID, "password").send_keys(device_password)
-    selenium.find_by(By.XPATH, "//input[@value='Log In']").click()
-    selenium.find_by(By.XPATH, "//input[@value='Users']")
-    selenium.screenshot('main')
+def test_login(selenium, device_user, device_password):
+    selenium.find_by(By.ID, "auth-oidc").click()
+    lib.login_oidc(selenium, device_user, device_password)
+    selenium.find_by(By.ID, "welcome").click()
 
