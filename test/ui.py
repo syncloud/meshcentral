@@ -41,5 +41,5 @@ def test_index(selenium, device_user, device_password):
 def test_login(selenium, device_user, device_password):
     selenium.find_by(By.ID, "auth-oidc").click()
     lib.login_oidc(selenium, device_user, device_password)
-    selenium.find_by(By.ID, "welcome").click()
+    selenium.find_by(By.XPATH, "//h1[.='My Devices']")
 
