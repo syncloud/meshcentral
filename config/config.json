@@ -22,6 +22,7 @@
       "_minify": true,
       "_newAccounts": true,
       "_userNameIsEmail": true,
+      "CertUrl": "{{ .AppUrl }}",
       "authStrategies": {
         "oidc": {
           "issuer": {
