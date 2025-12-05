@@ -22,7 +22,7 @@
       "_minify": true,
       "_newAccounts": true,
       "_userNameIsEmail": true,
-      "CertUrl": "{{ .AppUrl }}",
+      "CertUrl": "{{ .AppUrl }}/ping",
       "authStrategies": {
         "oidc": {
           "issuer": {
