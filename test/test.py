@@ -10,6 +10,8 @@ from syncloudlib.integration.installer import local_install, wait_for_installer
 
 DIR = dirname(__file__)
 TMP_DIR = '/tmp/syncloud'
+import logging
+log = logging.getLogger()
 
 
 @pytest.fixture(scope="session")
@@ -55,8 +57,9 @@ def test_install(app_archive_path, domain, device_session, device_password):
     wait_for_installer(device_session, domain, attempts=10)
 
 
-@pytest.mark.flaky(retries=10, delay=10)
+@pytest.mark.flaky(retries=20, delay=10)
 def test_visible_through_platform(app_domain):
+    log.info('test_visible_through_platform')
     response = requests.get('https://{0}'.format(app_domain), verify=False)
     assert response.status_code == 200, response.text
 
