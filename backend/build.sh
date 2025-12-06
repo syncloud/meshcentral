@@ -29,5 +29,5 @@ cd ${DIR}/../build
 #tar xf master.tar.gz
 wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/meshcentral.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/meshcentral.js
 wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/agents/meshcore.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/agents/meshcore.js
-wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/meshcentral.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/meshcentral.js
+wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/meshagent.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/meshagent.js
 wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/webserver.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/webserver.js
