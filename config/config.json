@@ -6,8 +6,13 @@
     "_WANonly": true,
     "_LANonly": true,
     "_sessionKey": "MyReallySecretPassword1",
-    "unixSocket": "{{ .DataDir }}/meshcentral.sock",
-    "unixSocketMode": "660",
+    "_unixSocket": "{{ .DataDir }}/meshcentral.sock",
+    "_unixSocketMode": "660",
+    "Port": 4430,
+    "AliasPort": 443,
+    "RedirPort": 800,
+    "AgentPong": 300,
+    "_TlsOffload": "127.0.0.1",
     "autoBackup": {
       "backupPath": "{{ .StorageDir }}/backup"
     },
