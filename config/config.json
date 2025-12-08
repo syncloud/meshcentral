@@ -16,7 +16,8 @@
     "autoBackup": {
       "backupPath": "{{ .StorageDir }}/backup"
     },
-    "tlsOffload": true
+    "tlsOffload": true,
+    "ignoreAgentHashCheck": true
   },
   "domains": {
     "": {
