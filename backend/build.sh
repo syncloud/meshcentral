@@ -31,3 +31,20 @@ wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/mesh
 wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/agents/meshcore.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/agents/meshcore.js
 wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/meshagent.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/meshagent.js
 wget https://raw.githubusercontent.com/cyberb/MeshCentral/refs/heads/master/webserver.js -O ${BUILD_DIR}/opt/meshcentral/meshcentral/webserver.js
+
+# patch ld
+SNAP=/snap/meshcentral/current
+mkdir -p $SNAP
+ln -s ${BUILD_DIR} $SNAP/backend
+
+LD=$(echo $SNAP/backend/lib/ld-*.so*)
+echo $LD
+apt install -y patchelf
+SNAP=/snap/meshcentral/current
+patchelf \
+  --set-interpreter $LD \
+  ${BUILD_DIR}/usr/local/bin/node
+
+patchelf \
+  --set-rpath $SNAP/backend/usr/lib \
+  ${BUILD_DIR}/usr/local/bin/node
