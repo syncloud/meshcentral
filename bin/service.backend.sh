@@ -1,5 +1,4 @@
 #!/bin/bash -e
-/bin/rm -f $SNAP_COMMON/web.socket
 export NODE_ENV=production
 export PATH=$SNAP/backend/usr/local/bin:$PATH
 export NODE_EXTRA_CA_CERTS=/var/snap/platform/current/syncloud.ca.crt

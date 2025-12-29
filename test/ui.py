@@ -42,4 +42,5 @@ def test_login(selenium, device_user, device_password):
     selenium.find_by(By.ID, "auth-oidc").click()
     lib.login_oidc(selenium, device_user, device_password)
     selenium.find_by(By.XPATH, "//h1[.='My Devices']")
+    selenium.screenshot('main')
 
