@@ -39,7 +39,7 @@ ln -s ${BUILD_DIR} $SNAP/backend
 
 LD=$(echo $SNAP/backend/lib/ld-*.so*)
 echo $LD
-apt install -y patchelf
+apk add patchelf
 SNAP=/snap/meshcentral/current
 patchelf \
   --set-interpreter $LD \
