@@ -1,0 +1,70 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Ylianst/MeshCentral/master/meshcentral-config-schema.json",
+  "settings": {
+    "debug": "*",
+    "cert": "{{ .AppDomain }}",
+    "_WANonly": true,
+    "_LANonly": true,
+    "_sessionKey": "MyReallySecretPassword1",
+    "_unixSocket": "{{ .DataDir }}/meshcentral.sock",
+    "_unixSocketMode": "660",
+    "Port": 4430,
+    "AliasPort": 443,
+    "RedirPort": 800,
+    "AgentPong": 300,
+    "_TlsOffload": "127.0.0.1",
+    "autoBackup": {
+      "backupPath": "{{ .StorageDir }}/backup"
+    },
+    "tlsOffload": true,
+    "ignoreAgentHashCheck": true
+  },
+  "domains": {
+    "": {
+      "showPasswordLogin": false,
+      "rootDirect": "/auth-oidc",
+      "title": "Syncloud",
+      "_title2": "Servername",
+      "_minify": true,
+      "_newAccounts": true,
+      "_userNameIsEmail": true,
+      "CertUrl": "{{ .AppUrl }}",
+      "authStrategies": {
+        "oidc": {
+          "issuer": {
+            "issuer": "{{ .AuthUrl }}",
+            "end_session_endpoint": "{{ .AuthUrl }}/logout"
+          },
+          "client": {
+            "client_id": "{{ .OIDCClientId }}",
+            "client_secret": "{{ .OIDCClientSecret }}"
+          },
+          "groups": {
+            "required": [
+              "users",
+              "syncloud"
+            ],
+            "siteadmin": [
+              "syncloud"
+            ],
+            "sync": {
+              "enable": true,
+              "filter": [
+                "users",
+                "syncloud"
+              ]
+            }
+          },
+          "newAccounts": true,
+          "_newAccountsRights": [
+            "nonewgroups",
+            "notools"
+          ],
+          "_newAccountsUserGroups": [
+            "ugrp//xxxxxxxxxxxxxxxxx"
+          ]
+        }
+      }
+    }
+  }
+}
