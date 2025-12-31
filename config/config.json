@@ -17,7 +17,7 @@
       "backupPath": "{{ .StorageDir }}/backup"
     },
     "tlsOffload": true,
-    "ignoreAgentHashCheck": true
+    "_ignoreAgentHashCheck": true
   },
   "domains": {
     "": {
