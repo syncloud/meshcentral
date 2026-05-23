@@ -41,7 +41,7 @@ apps:
     command: bin/cli restore-post-start
 
 confinement: strict
-description: meshcentral
+description: Remote device management
 grade: stable
 name: meshcentral
-summary: meshcentral
+summary: MeshCentral
